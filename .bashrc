@@ -118,8 +118,13 @@ export PATH=$PATH:$HOME/bin:/usr/games:$HOME/git/scripts:./
 PS1='\n[\[\033[01;33m\]\@ \d\[\033[00m\]] ${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h \[\033[01;32m\]\u \[\033[34m\]\w$(gitPS1Calc) \n\[\033[00m\]\$ '
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
-export JPY=$HOME/git/j2/j.py
-. $HOME/git/j2/j.sh
+if [ ! -e "$HOME/git/z/" ]; then
+  cd "$HOME/git"
+  git clone git@github.com:rupa/z.git
+  cd -
+fi
+
+. $HOME/git/z/z.sh
 
 function get_xserver (){
   case $TERM in

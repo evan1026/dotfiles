@@ -57,7 +57,7 @@ set ttimeoutlen=50
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-set fillchars+=vert:\ 
+set fillchars+=vert:\   "this comment is only here to suppress trailing whitespace warnings
 hi VertSplit ctermbg=236 ctermfg=236
 hi StatusLine ctermbg=236 ctermfg=236
 
@@ -83,10 +83,34 @@ let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_compiler_options = '-std=c++11 -Wall'
 let g:syntastic_cpp_compiler = 'clang++'
 
+let g:netrw_list_hide_none = ''
+let g:netrw_list_hide_hidden = '\(^\|\s\s\)\zs\.\S\+'
+
 let g:netrw_liststyle = 3
-let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_list_hide = g:netrw_list_hide_hidden
 
 let g:netrw_sort_options = "i"
 let g:netrw_sort_sequence = "[\/]$,\<core\%(\.\d\+\)\=\>,\~\=\*$,*,\.o$,\.obj$,\.info$,\.swp$,\.bak$,\~$)"
+
+augroup netrw_mapping
+    autocmd!
+    autocmd filetype netrw call NetrwMapping()
+augroup END
+
+function! NetrwMapping()
+    noremap <buffer> <C-h> :call NetrwChangeHiddenFileState()<cr>
+endfunction
+
+function! NetrwChangeHiddenFileState()
+    if g:netrw_list_hide ==# g:netrw_list_hide_none
+        let g:netrw_list_hide = g:netrw_list_hide_hidden
+        e.
+    else
+        let g:netrw_list_hide = g:netrw_list_hide_none
+        e.
+    endif
+endfunction
+
+command NetrwChangeHiddenFileState call NetrwChangeHiddenFileState()
 
 set completeopt-=preview

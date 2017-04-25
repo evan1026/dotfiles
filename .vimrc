@@ -130,12 +130,11 @@ let vimsyn_folding='af'       " Vim script
 let xml_syntax_folding=1      " XML
 
 function! CollapseFoldsFixed()
-    if &ft =~ 'sh'
-        return
+    if &ft =~ 'cpp'
+        %foldo!
+        %foldc
     endif
 
-    %foldo!
-    %foldc
 endfunction
 
 autocmd BufRead * call CollapseFoldsFixed()

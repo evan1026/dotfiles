@@ -114,3 +114,9 @@ endfunction
 command NetrwChangeHiddenFileState call NetrwChangeHiddenFileState()
 
 set completeopt-=preview
+
+set foldmethod=syntax
+hi Folded ctermbg=0 ctermfg=245 cterm=bold
+
+autocmd BufRead * :%foldo!
+autocmd BufRead * :%foldc

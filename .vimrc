@@ -30,6 +30,7 @@ call vundle#begin()
     Bundle 'octol/vim-cpp-enhanced-highlight'
     Plugin 'rdnetto/YCM-Generator'
     Plugin 'majutsushi/tagbar'
+    Plugin 'vim-scripts/a.vim'
 
 call vundle#end()
 filetype plugin indent on

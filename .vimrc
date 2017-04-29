@@ -31,6 +31,8 @@ call vundle#begin()
     Plugin 'rdnetto/YCM-Generator'
     Plugin 'majutsushi/tagbar'
     Plugin 'vim-scripts/a.vim'
+    Plugin 'xolox/vim-easytags'
+    Plugin 'xolox/vim-misc'
 
 call vundle#end()
 filetype plugin indent on

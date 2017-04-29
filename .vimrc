@@ -29,6 +29,7 @@ call vundle#begin()
     Bundle 'JuliaLang/julia-vim'
     Bundle 'octol/vim-cpp-enhanced-highlight'
     Plugin 'rdnetto/YCM-Generator'
+    Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 filetype plugin indent on
@@ -119,7 +120,6 @@ set relativenumber
 
 set foldmethod=syntax
 hi Folded ctermbg=NONE ctermfg=245 cterm=bold
-
 let javaScript_fold=1         " JavaScript
 let perl_fold=1               " Perl
 let php_folding=1             " PHP
@@ -128,13 +128,10 @@ let ruby_fold=1               " Ruby
 let sh_fold_enabled=1         " sh
 let vimsyn_folding='af'       " Vim script
 let xml_syntax_folding=1      " XML
+set foldlevelstart=99
 
-function! CollapseFoldsFixed()
-    if &ft =~ 'cpp'
-        %foldo!
-        %foldc
-    endif
-
-endfunction
-
-autocmd BufRead * call CollapseFoldsFixed()
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_width = 60
+hi TagbarHighlight guibg=0 ctermbg=0
+autocmd BufReadPost * nested :TagbarOpen
+autocmd BufReadPost * nested :TagbarSetFoldlevel! 99

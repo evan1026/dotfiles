@@ -179,3 +179,8 @@ function! Win_by_bufname(bufname)
     let thewindow = filter(bufmap, 'v:val[0] =~ a:bufname')[0][1]
     execute thewindow 'wincmd w'
 endfunction
+
+hi YcmErrorSection cterm=underline ctermbg=52
+hi YcmWarningSection cterm=underline ctermbg=94
+
+let g:ycm_extra_conf_globlist = ['~/git/jackofclubs/*', '!~/*']

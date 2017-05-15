@@ -134,7 +134,48 @@ let xml_syntax_folding=1      " XML
 set foldlevelstart=99
 
 nmap <F8> :TagbarToggle<CR>
-let g:tagbar_width = 60
 hi TagbarHighlight guibg=0 ctermbg=0
 autocmd BufReadPost * nested :TagbarOpen
 autocmd BufReadPost * nested :TagbarSetFoldlevel! 99
+
+let g:e_tagbar_default_width = 30
+let g:e_tagbar_expanded = 0
+let g:tagbar_width = g:e_tagbar_default_width
+function! TagbarWiden()
+    if g:e_tagbar_expanded == 1
+        let g:tagbar_width = g:e_tagbar_default_width
+        let g:e_tagbar_expanded = 0
+    else
+        let g:tagbar_width = TagbarBufferWidth()
+        let g:e_tagbar_expanded = 1
+    endif
+    :TagbarClose
+    :TagbarOpen
+endfunction
+command TagbarSizeToggle call TagbarWiden()
+nmap <F7> :TagbarSizeToggle<CR>
+imap <F7> :TagbarSizeToggle<CR>
+
+function! BufferWidth() abort
+    let view = winsaveview()
+    let max_col = 0
+    g/^/let max_col=max([max_col, col('$') - 1])
+    call histdel('search' -1)
+    let @/ = histget('search', -1)
+    call winrestview(view)
+    return max_col
+endfunction
+
+function! TagbarBufferWidth()
+    let current_win = winnr()
+    call Win_by_bufname("Tagbar")
+    let bwidth = BufferWidth()
+    execute current_win 'wincmd w'
+    return bwidth
+endfunction
+
+function! Win_by_bufname(bufname)
+    let bufmap = map(range(1, winnr('$')), '[bufname(winbufnr(v:val)), v:val]')
+    let thewindow = filter(bufmap, 'v:val[0] =~ a:bufname')[0][1]
+    execute thewindow 'wincmd w'
+endfunction

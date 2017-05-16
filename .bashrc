@@ -119,6 +119,9 @@ PS1='\n[\[\033[01;33m\]\@ \d\[\033[00m\]] ${debian_chroot:+($debian_chroot)}\[\0
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
 if [ ! -e "$HOME/git/z/" ]; then
+  if [ ! -e "$HOME/git/" ]; then
+    mkdir "$HOME/git"
+  fi
   cd "$HOME/git"
   git clone git@github.com:rupa/z.git
   cd -
@@ -155,53 +158,6 @@ if [ -z $TMUX ]; then
   echo -e "\e[34m$(tmux ls | cut -d : -f 1 | sed ':a;N;$!ba;s/\n/ /g')\e[m"
 fi
 
-#if [[ -z $TMUX ]]; then
-#    export PREV_TERM=$TERM
-#    echo "Enter desired option/profile name:"
-#    if [[ $(tmux ls 2>/dev/null) != "" ]]; then
-#        echo -e "    \e[32mAvailable profiles:\e[34m" $(tmux ls -F#S) "\e[m"
-#    else
-#        echo -e "    \e[32mNo available profiles\e[m"
-#    fi
-#    read PROFILE
-#    if [[ $PROFILE = "ssh" ]]; then
-#        clear
-#        echo "Enter host:"
-#        read HOST
-#        if [[ $HOST = "me" ]]; then
-#            sshme
-#        elif [[ $HOST = "joe" ]]; then
-#            sshjoe
-#        else
-#            ssh $HOST
-#        fi
-#    else
-#        if [[ $PROFILE = "" ]]; then
-#            if [[ $GUAKE = "1" ]]; then
-#                PROFILE="guake"
-#            else
-#                PROFILE="default";
-#            fi
-#        fi
-#        if [[ -z $DISPLAY && $(tmux ls | grep $PROFILE) = "" ]]; then
-#            VALID=false
-#            while [[ $VALID = false ]]; do
-#                echo "Display? y|n (n): "
-#                read RESPONSE
-#                if [[ $RESPONSE = "n" || $RESPONSE = "" ]]; then
-#                    VALID=true
-#                elif [[ $RESPONSE = "y" ]]; then
-#                    set_display
-#                    VALID=true
-#                fi
-#            done
-#        fi
-#        if [[ $PROFILE != "none" ]]; then
-#            tmuxt $PROFILE
-#        fi
-#    fi
-#fi
-
 #if [ -f "${HOME}/.gpg-agent-info" ]; then
 #    . "${HOME}/.gpg-agent-info"
 #   export GPG_AGENT_INFO
@@ -212,15 +168,3 @@ fi
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
 #export PATH="/home/$USER/.genymotion:$PATH"
-
-#man() {
-#    env \
-  #        LESS_TERMCAP_mb=$(printf "\e[1;32m") \
-  #        LESS_TERMCAP_md=$(printf "\e[1;32m") \
-  #        LESS_TERMCAP_me=$(printf "\e[0m") \
-  #        LESS_TERMCAP_se=$(printf "\e[0m") \
-  #        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-  #        LESS_TERMCAP_ue=$(printf "\e[0m") \
-  #        LESS_TERMCAP_us=$(printf "\e[1;31m") \
-  #            man "$@"
-#}

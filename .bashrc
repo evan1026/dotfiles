@@ -168,3 +168,5 @@ fi
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
 #export PATH="/home/$USER/.genymotion:$PATH"
+
+eval $(ssh-agent -s)

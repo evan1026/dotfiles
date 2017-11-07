@@ -122,7 +122,7 @@ set completeopt-=preview
 set relativenumber
 
 set foldmethod=syntax
-hi Folded ctermbg=NONE ctermfg=245 cterm=bold
+hi Folded ctermbg=235 ctermfg=245 cterm=bold
 let javaScript_fold=1         " JavaScript
 let perl_fold=1               " Perl
 let php_folding=1             " PHP
@@ -132,6 +132,24 @@ let sh_fold_enabled=1         " sh
 let vimsyn_folding='af'       " Vim script
 let xml_syntax_folding=1      " XML
 set foldlevelstart=99
+
+function! MyFoldText() " {{{
+   let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 4
+    return line . repeat(" ",fillcharcount) . foldedlinecount . ' lines '
+endfunction " }}}
+set foldtext=MyFoldText()
+
 
 nmap <F8> :TagbarToggle<CR>
 hi TagbarHighlight guibg=0 ctermbg=0

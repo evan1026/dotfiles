@@ -142,10 +142,10 @@ if [ ! -d "$HOME/git/scripts" ]; then
 fi
 
 if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
+    echo "Enter sudo password to install exuberant-ctags, cmake, clang, python dev headers, inconsolata font, and vim"
+    sudo apt install exuberant-ctags cmake clang python-dev python3-dev fonts-inconsolata vim
+    
     git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
-
-    echo "Enter sudo password to install exuberant-ctags, cmake, clang, python dev headers, and inconsolata font"
-    sudo apt install exuberant-ctags cmake clang python-dev python3-dev fonts-inconsolata
 
     vim +PluginInstall +qall
 

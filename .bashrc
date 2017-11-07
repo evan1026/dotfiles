@@ -129,6 +129,34 @@ fi
 
 . $HOME/git/z/z.sh
 
+if command -v tmux; then
+    printf "" #do nothing
+else
+    echo "Enter sudo password for apt install tmux"
+    sudo apt install tmux
+fi
+
+if [ ! -d "$HOME/git/scripts" ]; then
+    mkdir -p "$HOME/git/scripts"
+    git clone "git@github.com:evan1026/scripts.git" "$HOME/git/scripts"
+fi
+
+if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
+    git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
+
+    echo "Enter sudo password to install exuberant-ctags, cmake, clang, python dev headers, and inconsolata font"
+    sudo apt install exuberant-ctags cmake clang python-dev python3-dev fonts-inconsolata
+
+    vim +PluginInstall +qall
+
+    $HOME/.vim/bundle/YouCompleteMe/install.py --clang-completer
+
+    wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+    sudo mv PowerlineSymbols.otf /usr/share/fonts/
+    sudo fc-cache -vf
+    sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
+fi
+
 function get_xserver (){
   case $TERM in
     xterm )

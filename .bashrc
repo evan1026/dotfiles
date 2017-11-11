@@ -129,7 +129,7 @@ fi
 
 . $HOME/git/z/z.sh
 
-if command -v tmux; then
+if command -v tmux > /dev/null; then
     printf "" #do nothing
 else
     echo "Enter sudo password for apt install tmux"
@@ -144,7 +144,7 @@ fi
 if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
     echo "Enter sudo password to install exuberant-ctags, cmake, clang, python dev headers, inconsolata font, and vim"
     sudo apt install exuberant-ctags cmake clang python-dev python3-dev fonts-inconsolata vim
-    
+
     git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
 
     vim +PluginInstall +qall
@@ -200,3 +200,10 @@ export CXX=/usr/bin/clang++
 eval $(ssh-agent -s)
 
 export GOPATH="$HOME/go"
+
+export XDG_CONFIG_HOME="$HOME/.config/"
+
+if command -v powerline-daemon > /dev/null; then
+  powerline-daemon -q
+  source "/usr/local/lib/python3.5/dist-packages/powerline/bindings/bash/powerline.sh"
+fi

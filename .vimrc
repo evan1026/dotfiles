@@ -33,6 +33,7 @@ call vundle#begin()
     Plugin 'vim-scripts/a.vim'
     Plugin 'xolox/vim-easytags'
     Plugin 'xolox/vim-misc'
+    "Plugin 'w0rp/ale'
 
 call vundle#end()
 filetype plugin indent on

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+THIS_DIR="$(dirname $0)"
+
+THIS_DIR_RELATIVE="$(realpath --relative-to="$HOME" "$THIS_DIR")"
+
+for file in .bashrc .bash_aliases .vimrc .tmux.conf .tmux_powerline.conf .gitconfig; do
+	mv "$HOME/$file" "$HOME/$file.old"
+	ln -s "$THIS_DIR_RELATIVE/$file" "$HOME/$file"
+done
+
+THIS_DIR_RELATIVE="$(realpath --relative-to="$HOME/.config" "$THIS_DIR")"
+
+ln -s "$THIS_DIR_RELATIVE/powerline" "$HOME/.config/powerline"

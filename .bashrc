@@ -141,6 +141,29 @@ if [ ! -d "$HOME/git/scripts" ]; then
     git clone "git@github.com:evan1026/scripts.git" "$HOME/git/scripts"
 fi
 
+if [ ! -d "$HOME/git/docopts" ]; then
+    mkdir -p "$HOME/git/docopts"
+    git clone "git@github.com:docopt/docopts.git" "$HOME/git/docopts"
+
+    sudo apt install python-pip python3-pip
+    last_dir="$(pwd)"
+    cd "$HOME/git/docopts"
+    python setup.py build
+    sudo python setup.py install
+	cd "$last_dir"
+
+    sudo -H pip3 install powerline-status
+
+    #TODO this is getting ridiculous. I need to make a setup script that sets up the environment
+fi
+
+if [ ! -d "$HOME/git/diff-so-fancy" ]; then
+    mkdir -p "$HOME/git/diff-so-fancy"
+    git clone "git@github.com:so-fancy/diff-so-fancy" "$HOME/git/diff-so-fancy"
+    mkdir "$HOME/bin"
+    ln -s "$HOME/git/diff-so-fancy/diff-so-fancy" "$HOME/bin/diff-so-fancy"
+fi
+
 if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
     echo "Enter sudo password to install exuberant-ctags, cmake, clang, python dev headers, inconsolata font, and vim"
     sudo apt install exuberant-ctags cmake clang python-dev python3-dev fonts-inconsolata vim
@@ -205,5 +228,6 @@ export XDG_CONFIG_HOME="$HOME/.config/"
 
 if command -v powerline-daemon > /dev/null; then
   powerline-daemon -q
-  source "/usr/local/lib/python3.5/dist-packages/powerline/bindings/bash/powerline.sh"
+  powerline_location=$(pip3 show powerline-status | grep Location: | awk '{print $2}')
+  source "$powerline_location/powerline/bindings/bash/powerline.sh"
 fi

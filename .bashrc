@@ -207,3 +207,5 @@ if command -v powerline-daemon > /dev/null; then
   powerline-daemon -q
   source "/usr/local/lib/python3.5/dist-packages/powerline/bindings/bash/powerline.sh"
 fi
+
+alias rm="rm -I"

@@ -47,6 +47,7 @@ set nowrap
 set confirm
 
 set t_Co=256
+colorscheme default
 
 set backspace=indent,eol,start
 autocmd! BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino
@@ -153,7 +154,7 @@ set foldtext=MyFoldText()
 
 
 nmap <F8> :TagbarToggle<CR>
-hi TagbarHighlight guibg=0 ctermbg=0
+hi TagbarHighlight guibg=Black ctermbg=Black
 autocmd BufReadPost * nested :TagbarOpen
 autocmd BufReadPost * nested :TagbarSetFoldlevel! 99
 

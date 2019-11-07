@@ -13,4 +13,4 @@ done
 
 THIS_DIR_RELATIVE="$(realpath --relative-to="$HOME/.config" "$THIS_DIR")"
 
-ln -s "$THIS_DIR_RELATIVE/powerline" "$HOME/.config/powerline"
+ln -snf "$THIS_DIR_RELATIVE/powerline" "$HOME/.config/powerline"

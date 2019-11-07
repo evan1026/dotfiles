@@ -203,4 +203,4 @@ endfunction
 hi YcmErrorSection cterm=underline ctermbg=52
 hi YcmWarningSection cterm=underline ctermbg=94
 
-let g:ycm_extra_conf_globlist = ['~/git/jackofclubs/*', '~/git/ncurses-discord-cli']
+let g:ycm_extra_conf_globlist = ['~/git/jackofclubs/', '~/git/ncurses-discord-cli', '~/git/blink1-control']

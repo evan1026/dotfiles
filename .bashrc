@@ -35,43 +35,6 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-  xterm-color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
-    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-    # a case would tend to support setf rather than setaf.)
-    color_prompt=yes
-  else
-    color_prompt=
-  fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-  xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-  *)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -113,71 +76,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-export PATH=$PATH:$HOME/bin:/usr/games:$HOME/git/scripts:./:$HOME/go/bin
+export PATH=$PATH:$HOME/bin:/usr/games:$HOME/git/scripts:./:$HOME/go/bin:$HOME/git/docopts
 PS1='\n[\[\033[01;33m\]\@ \d\[\033[00m\]] ${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h \[\033[01;32m\]\u \[\033[34m\]\w$(gitPS1Calc) \n\[\033[00m\]\$ '
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
-if [ ! -e "$HOME/git/z/" ]; then
-  if [ ! -e "$HOME/git/" ]; then
-    mkdir "$HOME/git"
-  fi
-  cd "$HOME/git"
-  git clone git@github.com:rupa/z.git
-  cd -
-fi
-
-. $HOME/git/z/z.sh
-
-if command -v tmux > /dev/null; then
-    printf "" #do nothing
-else
-    echo "Enter sudo password for apt install tmux"
-    sudo apt install tmux
-fi
-
-if [ ! -d "$HOME/git/scripts" ]; then
-    mkdir -p "$HOME/git/scripts"
-    git clone "git@github.com:evan1026/scripts.git" "$HOME/git/scripts"
-fi
-
-if [ ! -d "$HOME/git/docopts" ]; then
-    mkdir -p "$HOME/git/docopts"
-    git clone "git@github.com:docopt/docopts.git" "$HOME/git/docopts"
-
-    sudo apt install python-pip python3-pip
-    last_dir="$(pwd)"
-    cd "$HOME/git/docopts"
-    python setup.py build
-    sudo python setup.py install
-	cd "$last_dir"
-
-    sudo -H pip3 install powerline-status
-
-    #TODO this is getting ridiculous. I need to make a setup script that sets up the environment
-fi
-
-if [ ! -d "$HOME/git/diff-so-fancy" ]; then
-    mkdir -p "$HOME/git/diff-so-fancy"
-    git clone "git@github.com:so-fancy/diff-so-fancy" "$HOME/git/diff-so-fancy"
-    mkdir "$HOME/bin"
-    ln -s "$HOME/git/diff-so-fancy/diff-so-fancy" "$HOME/bin/diff-so-fancy"
-fi
-
-if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
-    echo "Enter sudo password to install exuberant-ctags, cmake, clang, python dev headers, inconsolata font, and vim"
-    sudo apt install exuberant-ctags cmake clang python-dev python3-dev fonts-inconsolata vim
-
-    git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
-
-    vim +PluginInstall +qall
-
-    $HOME/.vim/bundle/YouCompleteMe/install.py --clang-completer
-
-    wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
-    sudo mv PowerlineSymbols.otf /usr/share/fonts/
-    sudo fc-cache -vf
-    sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
+if [ -e "$HOME/git/z/" ]; then
+  . $HOME/git/z/z.sh
 fi
 
 function get_xserver (){
@@ -244,11 +148,5 @@ unset env
 export GOPATH="$HOME/go"
 
 export XDG_CONFIG_HOME="$HOME/.config/"
-
-if command -v powerline-daemon > /dev/null; then
-  powerline-daemon -q
-  powerline_location=$(pip3 show powerline-status | grep Location: | awk '{print $2}')
-  source "$powerline_location/powerline/bindings/bash/powerline.sh"
-fi
 
 alias rm="rm -I"

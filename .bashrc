@@ -150,3 +150,10 @@ export GOPATH="$HOME/go"
 export XDG_CONFIG_HOME="$HOME/.config/"
 
 alias rm="rm -I"
+
+if command -v powerline-daemon > /dev/null; then
+  powerline-daemon -q
+  if [ -e "$HOME/.config/powerlinebash.sh" ]; then
+    source "$HOME/.config/powerlinebash.sh"
+  fi
+fi

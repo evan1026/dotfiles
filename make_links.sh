@@ -7,7 +7,7 @@ for file in .bashrc .bash_aliases .vimrc .tmux.conf .tmux_powerline.conf .gitcon
 	if [ -e "$HOME/$file" ]; then
 		mv "$HOME/$file" "$HOME/$file.old"
 	fi
-	ln -s "$THIS_DIR_RELATIVE/$file" "$HOME/$file"
+	ln -snf "$THIS_DIR_RELATIVE/$file" "$HOME/$file"
 done
 
 THIS_DIR_RELATIVE="$(realpath --relative-to="$HOME/.config" "$THIS_DIR")"

@@ -58,9 +58,6 @@ if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
     sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
 fi
 
-if command -v powerline-daemon > /dev/null; then
-  powerline-daemon -q
-  powerline_location=$(pip3 show powerline-status | grep Location: | awk '{print $2}')
-  source "$powerline_location/powerline/bindings/bash/powerline.sh"
-fi
+powerline_location=$(pip3 show powerline-status | grep Location: | awk '{print $2}')
+ln -snf "$powerline_location/powerline/bindings/bash/powerline.sh" "$HOME/.config/powerlinebash.sh"
 

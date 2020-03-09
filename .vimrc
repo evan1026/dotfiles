@@ -83,6 +83,8 @@ nnoremap <C-N> :set nu!<CR>
 highlight SignColumn ctermbg=none
 set updatetime=1000
 
+set wildignore=*.swp
+
 let g:syntastic_cpp_checkers = ['gcc']
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_auto_refresh_includes = 1

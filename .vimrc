@@ -10,7 +10,7 @@ call vundle#begin()
     " let Vundle manage Vundle, required
     Plugin 'gmarik/Vundle.vim'
     Plugin 'sheerun/vim-polyglot'
-    Plugin 'Valloric/YouCompleteMe'
+    "Plugin 'Valloric/YouCompleteMe'
     "Plugin 'scrooloose/syntastic'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
@@ -204,5 +204,3 @@ endfunction
 
 hi YcmErrorSection cterm=underline ctermbg=52
 hi YcmWarningSection cterm=underline ctermbg=94
-
-let g:ycm_extra_conf_globlist = ['~/git/jackofclubs/', '~/git/ncurses-discord-cli', '~/git/blink1-control']

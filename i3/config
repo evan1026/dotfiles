@@ -140,6 +140,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-msg exit"
 bindsym $mod+Shift+w exec "dm-tool lock"
 bindsym $mod+Shift+s exec "systemctl suspend && dm-tool lock"
+bindsym XF86PowerOff exec "systemctl suspend && dm-tool lock"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

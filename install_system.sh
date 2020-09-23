@@ -25,15 +25,15 @@ if [ ! -d "$HOME/git/docopts" ]; then
     mkdir -p "$HOME/git/docopts"
     git clone "git@github.com:docopt/docopts.git" "$HOME/git/docopts"
 
-    sudo apt install python-pip python3-pip
     last_dir="$(pwd)"
     cd "$HOME/git/docopts"
-    python setup.py build
-    sudo python setup.py install
+    ./get_docopts.sh
+    ls -s docopts "$HOME/git/docopts/docopts"
 	cd "$last_dir"
-
-    sudo -H pip3 install powerline-status
 fi
+
+sudo apt install python-pip python3-pip
+sudo -H pip3 install powerline-status
 
 if [ ! -d "$HOME/git/diff-so-fancy" ]; then
     mkdir -p "$HOME/git/diff-so-fancy"

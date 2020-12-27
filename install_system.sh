@@ -32,7 +32,7 @@ if [ ! -d "$HOME/git/docopts" ]; then
 	cd "$last_dir"
 fi
 
-sudo apt install python-pip python3-pip
+sudo apt install python3-pip
 sudo -H pip3 install powerline-status
 
 if [ ! -d "$HOME/git/diff-so-fancy" ]; then

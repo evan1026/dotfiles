@@ -1,8 +1,20 @@
+" Plugins
+" =======
 call plug#begin(stdpath('data') . '/plugged')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'doums/darcula'
+    Plug 'bling/vim-airline'
 call plug#end()
+let g:deoplete#enable_at_startup = 1
 
+" Airline settings
+set laststatus=2
+set ttimeoutlen=50
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
+" Basic Settings
+" ==============
 syntax on
 set nu!
 set expandtab
@@ -10,7 +22,11 @@ set tabstop=4
 set shiftwidth=4
 set nowrap
 set confirm
+set updatetime=1000
+set wildignore=*.swp
 
+" Look and Feel
+" =============
 set termguicolors
 colorscheme darcula
 
@@ -26,15 +42,13 @@ au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-set laststatus=2
-set ttimeoutlen=50
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-
 set fillchars+=vert:\   "this comment is only here to suppress trailing whitespace warnings
 hi VertSplit ctermbg=236 ctermfg=236
 hi StatusLine ctermbg=236 ctermfg=236
+hi SignColumn ctermbg=none
 
+" Key Binds
+" =========
 nnoremap <silent> <C-Right> <c-w>l
 nnoremap <silent> <C-Left> <c-w>h
 nnoremap <silent> <C-Up> <c-w>k
@@ -48,13 +62,9 @@ nnoremap <C-E> :Explore<CR>
 
 nnoremap <C-N> :set nu!<CR>
 
-highlight SignColumn ctermbg=none
-set updatetime=1000
-
-set wildignore=*.swp
-
+" Folding
+" =======
 set foldmethod=syntax
-"hi Folded ctermbg=235 ctermfg=245 cterm=bold
 let javaScript_fold=1         " JavaScript
 let perl_fold=1               " Perl
 let php_folding=1             " PHP
@@ -81,6 +91,3 @@ function! MyFoldText() " {{{
     return line . repeat(" ",fillcharcount) . foldedlinecount . ' lines '
 endfunction " }}}
 set foldtext=MyFoldText()
-
-let g:deoplete#enable_at_startup = 1
-

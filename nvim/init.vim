@@ -30,8 +30,8 @@ set wildignore=*.swp
 set termguicolors
 colorscheme darcula
 
-hi Normal guibg=black
-hi LineNr guibg=black
+hi Normal guibg=none
+hi LineNr guibg=none
 
 set backspace=indent,eol,start
 autocmd! BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino

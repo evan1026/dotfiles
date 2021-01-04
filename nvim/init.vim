@@ -2,8 +2,11 @@
 " =======
 call plug#begin(stdpath('data') . '/plugged')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'deoplete-plugins/deoplete-jedi'
+    Plug 'Shougo/deoplete-clangx'
     Plug 'doums/darcula'
     Plug 'bling/vim-airline'
+    Plug 'tpope/vim-sleuth'
 call plug#end()
 let g:deoplete#enable_at_startup = 1
 
@@ -30,8 +33,8 @@ set wildignore=*.swp
 set termguicolors
 colorscheme darcula
 
-hi Normal guibg=black
-hi LineNr guibg=black
+hi Normal guibg=black ctermbg=black
+hi LineNr guibg=black ctermbg=black
 
 set backspace=indent,eol,start
 autocmd! BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino
@@ -43,9 +46,9 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 set fillchars+=vert:\   "this comment is only here to suppress trailing whitespace warnings
-hi VertSplit ctermbg=236 ctermfg=236
-hi StatusLine ctermbg=236 ctermfg=236
-hi SignColumn ctermbg=none
+hi VertSplit ctermbg=236 ctermfg=236 guifg=#303030 guibg=#303030
+hi StatusLine ctermbg=236 ctermfg=236 guifg=#303030 guibg=#303030
+hi SignColumn ctermbg=none guibg=none
 
 " Key Binds
 " =========

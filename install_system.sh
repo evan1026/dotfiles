@@ -37,14 +37,14 @@ if [ ! -d "$HOME/git/docopts" ]; then
     mkdir -p "$HOME/git/docopts"
     git clone "git@github.com:docopt/docopts.git" "$HOME/git/docopts"
 
-    sudo apt install python-pip python3-pip
     last_dir="$(pwd)"
     cd "$HOME/git/docopts"
-    python setup.py build
-    sudo python setup.py install
+    ./get_docopts.sh
     cd "$last_dir"
-
 fi
+
+sudo apt install python3-pip
+sudo -H pip3 install powerline-status
 
 if [ ! -d "$HOME/git/diff-so-fancy" ]; then
     echo "============================"

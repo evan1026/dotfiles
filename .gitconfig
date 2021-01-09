@@ -1,7 +1,7 @@
 [user]
     email = evanallan1026@gmail.com
     name = Evan Allan
-    signingkey = 2FFED2A4ABD8F78D
+    signingkey = 50DA6BC3773E802A
 [status]
     color = always
 [push]
@@ -28,3 +28,5 @@
     whitespace = red reverse
 [commit]
     gpgsign = true
+[pull]
+	rebase = true

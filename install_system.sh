@@ -61,12 +61,14 @@ if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
     echo "= Installing Vundle ="
     echo "====================="
     echo "Enter sudo password to install exuberant-ctags, cmake, clang, python dev headers, inconsolata font, and vim"
-    sudo apt install exuberant-ctags cmake clang python-dev python3-dev fonts-inconsolata vim
+    sudo apt install exuberant-ctags cmake clang python-dev python3-dev fonts-inconsolata vim neovim
 
     git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+    "$(dirname "$0"/make_links.sh)"
+    nvim +PlugInstall +qall
     vim +PluginInstall +qall
-
     $HOME/.vim/bundle/YouCompleteMe/install.py --clang-completer
 
 fi

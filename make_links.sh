@@ -13,3 +13,6 @@ done
 THIS_DIR_RELATIVE="$(realpath --relative-to="$HOME/.config" "$THIS_DIR")"
 ln -snf "$THIS_DIR_RELATIVE/powerline" "$HOME/.config/powerline"
 ln -snf "$THIS_DIR_RELATIVE/i3" "$HOME/.config/i3"
+
+powerline_location=$(pip3 show powerline-status | grep Location: | awk '{print $2}')
+ln -snf "$powerline_location/powerline/bindings/bash/powerline.sh" "$HOME/.config/powerlinebash.sh"

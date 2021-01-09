@@ -76,7 +76,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=$PATH:$HOME/bin:/usr/games:$HOME/git/scripts:./:$HOME/go/bin:$HOME/git/docopts
+export PATH=$PATH:$HOME/bin:/usr/games:$HOME/git/scripts:./:$HOME/go/bin:$HOME/git/docopts:$HOME/.local/bin
 PS1='\n[\[\033[01;33m\]\@ \d\[\033[00m\]] ${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h \[\033[01;32m\]\u \[\033[34m\]\w$(gitPS1Calc) \n\[\033[00m\]\$ '
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 

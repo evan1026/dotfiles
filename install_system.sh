@@ -66,7 +66,7 @@ if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
     git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-    "$(dirname "$0"/make_links.sh)"
+    "$(dirname "$0")/make_links.sh"
     nvim +PlugInstall +qall
     vim +PluginInstall +qall
     $HOME/.vim/bundle/YouCompleteMe/install.py --clang-completer

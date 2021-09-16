@@ -23,6 +23,14 @@ set ttimeoutlen=50
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
+function! MyLineNumber()
+   return substitute(line('.'), '\d\@<=\(\(\d\{3\}\)\+\)$', ',&', 'g'). '/'.
+    \    substitute(line('$'), '\d\@<=\(\(\d\{3\}\)\+\)$', ',&', 'g')
+endfunction
+
+call airline#parts#define('linenr', {'function': 'MyLineNumber', 'accents': 'bold'})
+let g:airline_section_z = airline#section#create(['%p%% :', 'linenr', ' ☰ %v'])
+
 " Basic Settings
 " ==============
 syntax on

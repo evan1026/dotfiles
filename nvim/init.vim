@@ -9,6 +9,8 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'tpope/vim-sleuth'
     Plug 'tikhomirov/vim-glsl'
     Plug 'derekwyatt/vim-fswitch'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 let g:fsnonewfiles = 'on'
 

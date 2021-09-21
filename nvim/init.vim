@@ -11,6 +11,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'derekwyatt/vim-fswitch'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 let g:fsnonewfiles = 'on'
 
@@ -36,7 +37,7 @@ let g:airline_section_z = airline#section#create(['%p%% :', 'linenr', ' ☰ %
 " Basic Settings
 " ==============
 syntax on
-set nu!
+set nu
 set expandtab
 set tabstop=4
 set shiftwidth=4

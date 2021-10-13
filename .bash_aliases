@@ -10,5 +10,6 @@ alias pip='pip3'
 alias vi='nvim'
 alias vim='nvim'
 alias rm="rm -I"
+alias miniterm="miniterm-joc.open"
 
 function mkcd() { mkdir $1; cd $1; }

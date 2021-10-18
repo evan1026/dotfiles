@@ -74,6 +74,10 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+
+  if [ -f "$HOME/.bash_completion" ]; then
+    . "$HOME/.bash_completion"
+  fi
 fi
 
 export PATH=$PATH:$HOME/bin:/usr/games:$HOME/git/scripts:./:$HOME/go/bin:$HOME/git/docopts:$HOME/.local/bin
@@ -110,7 +114,7 @@ function set_display (){
 if [ -z $TMUX ]; then
   echo ""
   echo -e "\e[92mCurrent tmux profiles:"
-  echo -e "\e[34m$(tmux ls | cut -d : -f 1 | sed ':a;N;$!ba;s/\n/ /g')\e[m"
+  echo -e "\e[34m$(tmux ls 2>/dev/null | cut -d : -f 1 | sed ':a;N;$!ba;s/\n/ /g')\e[m"
 fi
 
 #if [ -f "${HOME}/.gpg-agent-info" ]; then

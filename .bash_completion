@@ -1,0 +1,9 @@
+_tmuxt_completions() {
+  if [ "${#COMP_WORDS[@]}" != "2" ]; then
+    return
+  fi
+
+  COMPREPLY=($(compgen -W "$(tmux ls 2>/dev/null | cut -d : -f 1 | sed ':a;N;$!ba;s/\n/ /g')" -- "${COMP_WORDS[1]}" ))
+}
+
+complete -F _tmuxt_completions tmuxt

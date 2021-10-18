@@ -12,6 +12,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 call plug#end()
 let g:fsnonewfiles = 'on'
 
@@ -19,6 +20,7 @@ let g:fsnonewfiles = 'on'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-11/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-11/lib/clang'
+call deoplete#custom#option('num_processes', 4)
 
 " Airline settings
 set laststatus=2

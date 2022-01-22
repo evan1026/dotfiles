@@ -13,3 +13,7 @@ alias rm="rm -I"
 alias miniterm="miniterm-joc.open"
 
 function mkcd() { mkdir $1; cd $1; }
+
+if [ -f "$HOME/.bash_aliases_machine_specific" ]; then
+    source "$HOME/.bash_aliases_machine_specific"
+fi

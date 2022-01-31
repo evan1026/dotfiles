@@ -13,6 +13,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+    Plug 'vim-scripts/dbext.vim'
 call plug#end()
 let g:fsnonewfiles = 'on'
 

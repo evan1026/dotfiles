@@ -5,7 +5,7 @@
 [status]
     color = always
 [push]
-    default = matching
+    default = upstream
 [color]
     diff = always
     ui = true

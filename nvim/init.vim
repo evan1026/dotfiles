@@ -2,6 +2,7 @@
 " =======
 call plug#begin(stdpath('data') . '/plugged')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/neoinclude.vim'
     Plug 'deoplete-plugins/deoplete-jedi'
     Plug 'deoplete-plugins/deoplete-clang'
     Plug 'doums/darcula'

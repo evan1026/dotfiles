@@ -122,8 +122,9 @@ fi
 #   export GPG_AGENT_INFO
 #   export SSH_AUTH_SOCK
 #fi
-#GPG_TTY=$(tty)
-#export GPG_TTY
+
+export GPG_TTY=$(tty)
+
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
 #export PATH="/home/$USER/.genymotion:$PATH"
@@ -156,3 +157,4 @@ if command -v powerline-daemon > /dev/null; then
     source "$HOME/.config/powerlinebash.sh"
   fi
 fi
+

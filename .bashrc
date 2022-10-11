@@ -158,3 +158,4 @@ if command -v powerline-daemon > /dev/null; then
   fi
 fi
 
+export CPM_SOURCE_CACHE=$HOME/.cache/CPM

@@ -39,6 +39,24 @@ endfunction
 call airline#parts#define('linenr', {'function': 'MyLineNumber', 'accents': 'bold'})
 let g:airline_section_z = airline#section#create(['%p%% :', 'linenr', ' ☰ %v'])
 
+" Markdown Preview settings
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {'theme': 'simple'},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false,
+    \ 'disable_filename': 0,
+    \ 'toc': {}
+    \ }
+
+let g:mkdp_theme = 'light'  " Flowchart plugin assumes light background and looks bad on a dark background, and I can't be bothered to customize the css
+
 " Basic Settings
 " ==============
 syntax on

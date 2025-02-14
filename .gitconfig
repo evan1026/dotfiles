@@ -1,7 +1,9 @@
 [user]
     email = evanallan1026@gmail.com
     name = Evan Allan
-    signingkey = 50DA6BC3773E802A
+    signingkey = ~/.ssh/id_rsa.pub
+[gpg]
+    format = ssh
 [status]
     color = always
 [push]
@@ -36,3 +38,5 @@
     enabled = true
 [include]
     path = ~/.git_safe_dirs
+[fetch]
+    writeCommitGraph = true

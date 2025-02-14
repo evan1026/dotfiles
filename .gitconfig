@@ -30,3 +30,9 @@
     gpgsign = true
 [pull]
     ff = only
+[init]
+    defaultBranch = master
+[rerere]
+    enabled = true
+[include]
+    path = ~/.git_safe_dirs
